@@ -2,7 +2,6 @@
 
 Simple WebAssmebly Juliaset renderer. Based on https://github.com/ali-raheem/Julia
 
-See it in action [here](https://ali-raheem.github.io/Julia.wasm/main.html). Renders in about 7 seconds on my PC but depends on how large you are rendering.
 
 ## Screenshots
 
@@ -22,6 +21,10 @@ See it in action [here](https://ali-raheem.github.io/Julia.wasm/main.html). Rend
 Then serve the files
 
 `emrun --no_browser --port 5000 out/`
+
+or
+
+`cd out/ && python -m SimpleHTTPServer`
 
 Make sure 'resize canvas' is checked.
 
