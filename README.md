@@ -2,6 +2,8 @@
 
 Simple WebAssmebly Juliaset renderer. Based on https://github.com/ali-raheem/Julia
 
+See it in action [here](https://ali-raheem.github.io/Julia.wasm/main.html). Renders in about 7 seconds on my PC but depends on how large you are rendering.
+
 ## Screenshots
 
 ![Screenshot of emscripten generated image](julia.wasm.screenshot.png)
