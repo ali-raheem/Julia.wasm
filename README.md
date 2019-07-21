@@ -2,6 +2,7 @@
 
 Simple WebAssmebly Juliaset renderer. Based on https://github.com/ali-raheem/Julia
 
+A 1920x1080 rendering takes 32 seconds on my PC using webassembly, so if you're not seeing anything happen be patient :), or change `WIDTH` and `HEIGHT` in `src/main.c`.
 
 ## Screenshots
 

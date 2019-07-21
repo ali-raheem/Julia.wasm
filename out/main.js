@@ -1230,11 +1230,11 @@ function updateGlobalBufferViews() {
 
 
 var STATIC_BASE = 1024,
-    STACK_BASE = 60816,
+    STACK_BASE = 60848,
     STACKTOP = STACK_BASE,
-    STACK_MAX = 5303696,
-    DYNAMIC_BASE = 5303696,
-    DYNAMICTOP_PTR = 60784;
+    STACK_MAX = 5303728,
+    DYNAMIC_BASE = 5303728,
+    DYNAMICTOP_PTR = 60816;
 
 assert(STACK_BASE % 16 === 0, 'stack must start aligned');
 assert(DYNAMIC_BASE % 16 === 0, 'heap must start aligned');
@@ -1767,7 +1767,7 @@ function _emscripten_asm_const_iiii(code, a0, a1, a2) {
 
 
 
-// STATICTOP = STATIC_BASE + 59792;
+// STATICTOP = STATIC_BASE + 59824;
 /* global initializers */  __ATINIT__.push({ func: function() { ___emscripten_environ_constructor() } });
 
 
@@ -1778,7 +1778,7 @@ function _emscripten_asm_const_iiii(code, a0, a1, a2) {
 
 
 /* no memory initializer */
-var tempDoublePtr = 60800
+var tempDoublePtr = 60832
 assert(tempDoublePtr % 8 == 0);
 
 function copyTempFloat(ptr) { // functions, because inlining this code increases code size too much
@@ -9114,6 +9114,14 @@ function copyTempDouble(ptr) {
       }
       return 0;
     }
+
+  function _time(ptr) {
+      var ret = (Date.now()/1000)|0;
+      if (ptr) {
+        HEAP32[((ptr)>>2)]=ret;
+      }
+      return ret;
+    }
 FS.staticInit();;
 if (ENVIRONMENT_HAS_NODE) { var fs = require("fs"); var NODEJS_PATH = require("path"); NODEFS.staticInit(); };
 if (ENVIRONMENT_IS_NODE) {
@@ -9555,6 +9563,7 @@ var asmLibraryArg = {
   "_nanosleep": _nanosleep,
   "_sigaction": _sigaction,
   "_signal": _signal,
+  "_time": _time,
   "_usleep": _usleep,
   "abortOnCannotGrowMemory": abortOnCannotGrowMemory,
   "emscriptenWebGLGet": emscriptenWebGLGet,

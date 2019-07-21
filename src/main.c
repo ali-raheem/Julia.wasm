@@ -1,11 +1,12 @@
 #include <stdio.h>
 #include <math.h>
 #include <complex.h>
+#include <time.h>
 
 #include <SDL2/SDL.h>
 
-#define WIDTH 640
-#define HEIGHT 480
+#define WIDTH 1920
+#define HEIGHT 1080
 #define SCALE 0.75
 
 #define THRESH 10
@@ -28,6 +29,8 @@ int isColoured(float x, float y) {
 int main() {
   SDL_Renderer *renderer;
   SDL_Window *window;
+
+  puts("Setting up SDL");
   
   SDL_Init(SDL_INIT_VIDEO);
   SDL_CreateWindowAndRenderer(WIDTH, HEIGHT, 0, &window, &renderer);
@@ -35,8 +38,11 @@ int main() {
   SDL_RenderClear(renderer);
   SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
 
+  time_t seconds;
+  seconds = time(NULL);
+  printf("Ready to draw!\n");
+  fflush(stdout);
   int x, y;
-  puts("Ready to draw!");
 
   for(y = 0; HEIGHT > y; ++y) {
     for(x = 0; WIDTH > x; ++x) {
@@ -48,6 +54,8 @@ int main() {
       SDL_RenderDrawPoint(renderer, x, y);
     }
     SDL_RenderPresent(renderer);
-    }
-    printf("Done drawing!");
+  }
+
+  seconds = time(NULL) - seconds;
+  printf("Done drawing! Took %li seconds.\n", seconds);
 }
